@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 const Record = (props) => (
  <tr>
    <td>{props.record.name}</td>
-   <td>{props.record.position}</td>
-   <td>{props.record.level}</td>
+   <td>{props.record.college}</td>
+   <td>{props.record.year}</td>
+   <td>{props.record.gender}</td>
+   <td>{props.record.date}</td>
+   <td>{props.record.branch}</td>
+   <td>{props.record.place}</td>
+   <td>{props.record.description}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
      <button className="btn btn-link"
@@ -25,7 +30,7 @@ export default function RecordList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`http://localhost:5050/record/`);
+     const response = await fetch(`http://localhost:5050/complaint/`);
 
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -44,7 +49,7 @@ export default function RecordList() {
 
  // This method will delete a record
  async function deleteRecord(id) {
-   await fetch(`http://localhost:5050/record/${id}`, {
+   await fetch(`http://localhost:5050/complaint/${id}`, {
      method: "DELETE"
    });
 
@@ -68,13 +73,18 @@ export default function RecordList() {
  // This following section will display the table with the records of individuals.
  return (
    <div>
-     <h3>Record List</h3>
+     <h3>List of Complaints</h3>
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>
            <th>Name</th>
-           <th>Position</th>
-           <th>Level</th>
+           <th>College</th>
+           <th>Year</th>
+           <th>Gender</th>
+           <th>Date</th>
+           <th>Branch</th>
+           <th>Place</th>
+           <th>Description</th>
            <th>Action</th>
          </tr>
        </thead>
